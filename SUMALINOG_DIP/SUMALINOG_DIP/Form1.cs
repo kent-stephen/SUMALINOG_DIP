@@ -49,28 +49,26 @@ namespace SUMALINOG_DIP
             switch (saveFileDialog1.FilterIndex)
             {
                 case 1:
-                    pictureBox2.Image.Save(saveFileDialog1.FileName,
+                    pictureBox3.Image.Save(saveFileDialog1.FileName,
                         System.Drawing.Imaging.ImageFormat.Jpeg);
                     break;
 
                 case 2:
-                    pictureBox2.Image.Save(saveFileDialog1.FileName,
+                    pictureBox3.Image.Save(saveFileDialog1.FileName,
                         System.Drawing.Imaging.ImageFormat.Bmp);
                     break;
 
                 case 3:
-                    pictureBox2.Image.Save(saveFileDialog1.FileName,
+                    pictureBox3.Image.Save(saveFileDialog1.FileName,
                         System.Drawing.Imaging.ImageFormat.Gif);
                     break;
 
                 case 4:
-                    pictureBox2.Image.Save(saveFileDialog1.FileName,
+                    pictureBox3.Image.Save(saveFileDialog1.FileName,
                         System.Drawing.Imaging.ImageFormat.Png);
                     break;
             }
-
-            pictureBox2.Image.Save(saveFileDialog1.FileName);
-
+                pictureBox3.Image.Save(saveFileDialog1.FileName);
         }
 
         private void greyscaleToolStripMenuItem_Click(object sender, EventArgs e)
@@ -87,7 +85,7 @@ namespace SUMALINOG_DIP
             }
 
             label.Text = "Greyscale";
-            pictureBox2.Image = processed;
+            pictureBox3.Image = processed;
         }
 
         private void colorInversionToolStripMenuItem_Click(object sender, EventArgs e)
@@ -106,7 +104,7 @@ namespace SUMALINOG_DIP
             }
 
             label.Text = "Color Inversion";
-            pictureBox2.Image = processed;
+            pictureBox3.Image = processed;
         }
 
         private void sToolStripMenuItem_Click(object sender, EventArgs e)
@@ -129,7 +127,7 @@ namespace SUMALINOG_DIP
             }
 
             label.Text = "Sepia";
-            pictureBox2.Image = processed;
+            pictureBox3.Image = processed;
         }
 
         private void histogramToolStripMenuItem_Click(object sender, EventArgs e)
@@ -172,7 +170,7 @@ namespace SUMALINOG_DIP
             histImage.RotateFlip(RotateFlipType.Rotate180FlipNone);
 
             label.Text = "Histogram";
-            pictureBox2.Image = histImage;
+            pictureBox3.Image = histImage;
 
         }
 
@@ -181,7 +179,7 @@ namespace SUMALINOG_DIP
             Image rotated = pictureBox1.Image;
             rotated.RotateFlip(RotateFlipType.RotateNoneFlipX);
             label.Text = "Horizontal Flip";
-            pictureBox2.Image = rotated;
+            pictureBox3.Image = rotated;
         }
 
         private void verticalToolStripMenuItem_Click(object sender, EventArgs e)
@@ -189,7 +187,7 @@ namespace SUMALINOG_DIP
             Image rotated = pictureBox1.Image;
             rotated.RotateFlip(RotateFlipType.RotateNoneFlipY);
             label.Text = "Vertical Flip";
-            pictureBox2.Image = rotated;
+            pictureBox3.Image = rotated;
         }
 
         private void label1_Click(object sender, EventArgs e)
@@ -237,7 +235,7 @@ namespace SUMALINOG_DIP
 
             pictureBox3.Image = resultImage;
 
-            label1.Text = "Substract";
+            label.Text = "Substract";
         }
 
         private void openFileDialog2_FileOk(object sender, CancelEventArgs e)
@@ -272,7 +270,7 @@ namespace SUMALINOG_DIP
 
         private void basicCopyToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            pictureBox2.Image = pictureBox1.Image;
+            pictureBox3.Image = pictureBox1.Image;
             label.Text = "Basic Copy";
         }
     }
