@@ -31,30 +31,7 @@ namespace SUMALINOG_DIP
 
         private void saveFileDialog1_FileOk(object sender, CancelEventArgs e)
         {
-            saveFileDialog1.Filter = "Jpeg Image|*.jpeg|Bitmap Image|*.bmp|Gif Image|*.gif|PNG Image|*.png";
-
-            switch (saveFileDialog1.FilterIndex)
-            {
-                case 1:
-                    pictureBox2.Image.Save(saveFileDialog1.FileName,
-                      System.Drawing.Imaging.ImageFormat.Jpeg);
-                    break;
-
-                case 2:
-                    pictureBox2.Image.Save(saveFileDialog1.FileName,
-                      System.Drawing.Imaging.ImageFormat.Bmp);
-                    break;
-
-                case 3:
-                    pictureBox2.Image.Save(saveFileDialog1.FileName,
-                      System.Drawing.Imaging.ImageFormat.Gif);
-                    break;
-
-                case 4:
-                    pictureBox2.Image.Save(saveFileDialog1.FileName,
-                      System.Drawing.Imaging.ImageFormat.Png);
-                    break;
-            }    
+   
         }
 
         private void openToolStripMenuItem_Click(object sender, EventArgs e)
@@ -64,8 +41,34 @@ namespace SUMALINOG_DIP
 
         private void saveToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            saveFileDialog1.Filter = "Jpeg Image|*.jpeg|Bitmap Image|*.bmp|Gif Image|*.gif|PNG Image|*.png";
             saveFileDialog1.ShowDialog();
             
+            switch (saveFileDialog1.FilterIndex)
+            {
+                case 1:
+                    pictureBox2.Image.Save(saveFileDialog1.FileName,
+                        System.Drawing.Imaging.ImageFormat.Jpeg);
+                    break;
+
+                case 2:
+                    pictureBox2.Image.Save(saveFileDialog1.FileName,
+                        System.Drawing.Imaging.ImageFormat.Bmp);
+                    break;
+
+                case 3:
+                    pictureBox2.Image.Save(saveFileDialog1.FileName,
+                        System.Drawing.Imaging.ImageFormat.Gif);
+                    break;
+
+                case 4:
+                    pictureBox2.Image.Save(saveFileDialog1.FileName,
+                        System.Drawing.Imaging.ImageFormat.Png);
+                    break;
+            }
+
+            pictureBox2.Image.Save(saveFileDialog1.FileName);
+
         }
 
         private void greyscaleToolStripMenuItem_Click(object sender, EventArgs e)
@@ -81,6 +84,7 @@ namespace SUMALINOG_DIP
                 }
             }
 
+            label.Text = "Greyscale";
             pictureBox2.Image = processed;
         }
 
@@ -99,6 +103,7 @@ namespace SUMALINOG_DIP
                 }
             }
 
+            label.Text = "Color Inversion";
             pictureBox2.Image = processed;
         }
 
@@ -121,6 +126,7 @@ namespace SUMALINOG_DIP
                 }
             }
 
+            label.Text = "Sepia";
             pictureBox2.Image = processed;
         }
 
@@ -145,7 +151,7 @@ namespace SUMALINOG_DIP
             int width = 256;
             int height = 100;
             Bitmap histImage = new Bitmap(width, height);
-            for (int i = 0; i < width; i++)
+            for (int i = width - 1; i >= 0; i--)
             {
                 for (int j = 0; j < height; j++)
                 {
@@ -160,13 +166,44 @@ namespace SUMALINOG_DIP
                 }
             }
 
+            // rotate histogram
+            histImage.RotateFlip(RotateFlipType.Rotate180FlipNone);
+
+            label.Text = "Histogram";
             pictureBox2.Image = histImage;
+
+        }
+
+        private void horizontalToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Image rotated = pictureBox1.Image;
+            rotated.RotateFlip(RotateFlipType.RotateNoneFlipX);
+            label.Text = "Horizontal Flip";
+            pictureBox2.Image = rotated;
+        }
+
+        private void verticalToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Image rotated = pictureBox1.Image;
+            rotated.RotateFlip(RotateFlipType.RotateNoneFlipY);
+            label.Text = "Vertical Flip";
+            pictureBox2.Image = rotated;
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void histogramToolStripMenuItem_CheckStateChanged(object sender, EventArgs e)
+        {
 
         }
 
         private void basicCopyToolStripMenuItem_Click(object sender, EventArgs e)
         {
             pictureBox2.Image = pictureBox1.Image;
+            label.Text = "Basic Copy";
         }
     }
 }
