@@ -13,6 +13,8 @@ namespace SUMALINOG_DIP
     public partial class Form1 : Form
     {
         Bitmap loaded, processed;
+        Bitmap imageB, imageA, colorgreen;
+        
         public Form1()
         {
             InitializeComponent();
@@ -197,6 +199,74 @@ namespace SUMALINOG_DIP
 
         private void histogramToolStripMenuItem_CheckStateChanged(object sender, EventArgs e)
         {
+
+        }
+
+        private void bLoadImage_Click(object sender, EventArgs e)
+        {
+            openFileDialog2.ShowDialog();
+        }
+
+        private void bSubstract_Click(object sender, EventArgs e)
+        {
+            // change greenscreen of imageB to imageA
+            Bitmap resultImage = new Bitmap(imageA.Width, imageA.Height);
+
+            Color mygreen = Color.FromArgb(0, 254, 103);
+            int greygreen = (mygreen.R + mygreen.G + mygreen.B) / 3;
+            int threshold = 5;
+
+            for (int x = 0; x < imageB.Width; x++)
+            {
+                for (int y = 0; y < imageB.Height; y++)
+                {
+                    Color pixel = imageB.GetPixel(x, y);
+                    Color backpixel = imageA.GetPixel(x, y);
+                    int grey = (pixel.R + pixel.G + pixel.B) / 3;
+                    int subtractValue = Math.Abs(grey - greygreen);
+                    if (subtractValue < threshold)
+                    {
+                        resultImage.SetPixel(x, y, backpixel);
+                    }
+                    else
+                    {
+                        resultImage.SetPixel(x, y, pixel);
+                    }
+                }
+            }
+
+            pictureBox3.Image = resultImage;
+
+            label1.Text = "Substract";
+        }
+
+        private void openFileDialog2_FileOk(object sender, CancelEventArgs e)
+        {
+            imageB = new Bitmap(openFileDialog2.FileName);
+            pictureBox1.Image = imageB;
+        }
+
+        private void openFileDialog3_FileOk(object sender, CancelEventArgs e)
+        {
+            imageA = new Bitmap(openFileDialog3.FileName);
+            pictureBox2.Image = imageA;
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            openFileDialog3.ShowDialog();
+        }
+
+        private void resetToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            pictureBox1.Image = null;
+            pictureBox2.Image = null;
+            pictureBox3.Image = null;
+            label.Text = "";
+
+            pictureBox1.Update();
+            pictureBox2.Update();
+            pictureBox3.Update();
 
         }
 
