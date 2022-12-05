@@ -53,7 +53,6 @@
             this.openFileDialog2 = new System.Windows.Forms.OpenFileDialog();
             this.openFileDialog3 = new System.Windows.Forms.OpenFileDialog();
             this.resetToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.label1 = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
@@ -198,7 +197,7 @@
             // label
             // 
             this.label.AutoSize = true;
-            this.label.Location = new System.Drawing.Point(513, 57);
+            this.label.Location = new System.Drawing.Point(990, 56);
             this.label.Name = "label";
             this.label.Size = new System.Drawing.Size(0, 13);
             this.label.TabIndex = 3;
@@ -260,20 +259,11 @@
             this.resetToolStripMenuItem.Text = "Reset";
             this.resetToolStripMenuItem.Click += new System.EventHandler(this.resetToolStripMenuItem_Click);
             // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(991, 57);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(0, 13);
-            this.label1.TabIndex = 8;
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1424, 515);
-            this.Controls.Add(this.label1);
             this.Controls.Add(this.bSubstract);
             this.Controls.Add(this.bLoadBackground);
             this.Controls.Add(this.bLoadImage);
@@ -323,7 +313,6 @@
         private System.Windows.Forms.ToolStripMenuItem resetToolStripMenuItem;
         private System.Windows.Forms.OpenFileDialog openFileDialog2;
         private System.Windows.Forms.OpenFileDialog openFileDialog3;
-        private System.Windows.Forms.Label label1;
     }
 }
 
